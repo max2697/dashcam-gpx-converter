@@ -1,0 +1,39 @@
+[tool.poetry]
+name = "dashcam-gpx-converter"
+version = "0.1.0"
+description = "Convert 70mai dashcam GPS logs into GPX tracks"
+authors = ["max2697"]
+license = "MIT"
+readme = "README.md"
+packages = [{ include = "dashcam_gpx_converter", from = "src" }]
+
+[tool.poetry.dependencies]
+python = "^3.13"
+
+[tool.poetry.scripts]
+dashcam2gpx = "dashcam_gpx_converter.cli:main"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 120
+target-version = ['py313']
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
+
+[tool.isort]
+profile = "black"
