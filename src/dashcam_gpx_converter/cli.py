@@ -22,6 +22,13 @@ def main() -> None:
         default=None,
         help="Path for GPX output (e.g., GPSData000001.gpx). Defaults to input path with .gpx extension.",
     )
+    parser.add_argument(
+        "--segments-limit",
+        "-s",
+        type=int,
+        default=0,
+        help="Maximum number of track segments to include in the GPX file. 0 - no limit.",
+    )
     parser.add_argument("--verbose", "-v", action="store_true", help="Enable debug logging")
     args = parser.parse_args()
 
@@ -35,7 +42,7 @@ def main() -> None:
     if not tracks:
         logging.warning("No valid tracks found in %s", input_path)
         return
-    write_gpx(tracks, output_path)
+    write_gpx(tracks, output_path, segments_limit=args.segments_limit)
 
 
 if __name__ == "__main__":
