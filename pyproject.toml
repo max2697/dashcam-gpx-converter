@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "dashcam-gpx-converter"
-version = "0.2.0"
+version = "0.3.0"
 description = "Convert 70mai dashcam GPS logs into GPX tracks"
 authors = ["max2697"]
 license = "MIT"

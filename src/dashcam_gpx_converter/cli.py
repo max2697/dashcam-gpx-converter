@@ -6,7 +6,7 @@ import logging
 from argparse import ArgumentParser
 from pathlib import Path
 
-from .converter import parse_tracks, write_gpx
+from .converter import parse_tracks, print_info, write_gpx
 
 
 def main() -> None:
@@ -30,6 +30,7 @@ def main() -> None:
         help="Maximum number of track segments to include in the GPX file. 0 - no limit.",
     )
     parser.add_argument("--verbose", "-v", action="store_true", help="Enable debug logging")
+    parser.add_argument("--info", "-i", action="store_true", help="Show file info")
     args = parser.parse_args()
 
     level = logging.DEBUG if args.verbose else logging.INFO
@@ -42,7 +43,10 @@ def main() -> None:
     if not tracks:
         logging.warning("No valid tracks found in %s", input_path)
         return
-    write_gpx(tracks, output_path, segments_limit=args.segments_limit)
+    if args.info:
+        print_info(tracks)
+    else:
+        write_gpx(tracks, output_path, segments_limit=args.segments_limit)
 
 
 if __name__ == "__main__":
