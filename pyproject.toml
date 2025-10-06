@@ -6,9 +6,42 @@ authors = ["max2697"]
 license = "MIT"
 readme = "README.md"
 packages = [{ include = "dashcam_gpx_converter", from = "src" }]
+homepage = "https://github.com/max2697/dashcam-gpx-converter"
+repository = "https://github.com/max2697/dashcam-gpx-converter"
+documentation = "https://github.com/max2697/dashcam-gpx-converter#readme"
+keywords = ["dashcam", "gpx", "gps", "converter", "70mai"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: GIS",
+    "Topic :: Utilities",
+]
 
 [tool.poetry.dependencies]
-python = "^3.13"
+python = ">=3.9"
+tzdata = ">=2025.2"
+
+[tool.poetry.group.dev.dependencies]
+black = "^25.1"
+isort = "^6.0"
+flake8 = "^7.1"
+poethepoet = "^0.26"
+
+[tool.poe.tasks.lint]
+sequence = [
+  { cmd = "black src" },
+  { cmd = "isort src" },
+  { cmd = "flake8" }
+]
 
 [tool.poetry.scripts]
 dashcam2gpx = "dashcam_gpx_converter.cli:main"

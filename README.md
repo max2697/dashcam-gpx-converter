@@ -25,7 +25,7 @@ dashcam2gpx -s 250 GPSData000001.txt -o GPSData000001.gpx -v
 ```bash
 git clone https://github.com/max2697/dashcam-gpx-converter.git
 cd dashcam-gpx-converter
-pip install -r requirements.txt
-poetry install
+poetry install --with dev
 poetry run dashcam2gpx -s 250 GPSData000001.txt
+poetry run poe lint
 ```
